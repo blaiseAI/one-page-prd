@@ -151,6 +151,43 @@ The app uses Tailwind CSS. Modify classes in the JSX or extend the theme in `tai
 
 ## Deployment
 
+### GitHub Pages with GitHub Actions (Recommended - Automated!)
+
+This project includes a GitHub Actions workflow that automatically builds and deploys to GitHub Pages when you push to the `main` branch.
+
+**One-time setup**:
+
+1. **Enable GitHub Pages**:
+   - Go to your repository Settings → Pages
+   - Under "Build and deployment"
+   - Source: Select **"GitHub Actions"**
+
+2. **Push to main branch**:
+   ```bash
+   git push origin main
+   ```
+
+That's it! The GitHub Action will automatically:
+- Build your app
+- Deploy to GitHub Pages
+- Your site will be live at: `https://yourusername.github.io/one-page-prd/`
+
+**Workflow file**: `.github/workflows/deploy.yml` - automatically triggers on push to main or can be run manually from the Actions tab.
+
+**Note**: The app is configured with `base: '/one-page-prd/'` in `vite.config.js`. If you rename the repo, update this value accordingly.
+
+### Manual Deployment (Alternative)
+
+If you prefer to deploy manually:
+
+```bash
+npm run deploy
+```
+
+This uses the `gh-pages` package to deploy the `dist` folder to a `gh-pages` branch.
+
+### Other Hosting Options
+
 Build the app for production:
 
 ```bash
@@ -159,43 +196,10 @@ npm run build
 
 The built files will be in the `dist` directory. Deploy to any static hosting service:
 
-### GitHub Pages (Recommended)
-
-This project is pre-configured for GitHub Pages deployment:
-
-1. **Install gh-pages package**:
-```bash
-npm install --save-dev gh-pages
-```
-
-2. **Add deploy scripts to package.json**:
-```json
-"scripts": {
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d dist"
-}
-```
-
-3. **Deploy**:
-```bash
-npm run deploy
-```
-
-4. **Enable GitHub Pages**:
-   - Go to your repo Settings → Pages
-   - Source: Deploy from a branch
-   - Branch: `gh-pages` → `/ (root)`
-   - Save
-
-Your app will be live at: `https://yourusername.github.io/one-page-prd/`
-
-**Note**: The app is configured with `base: '/one-page-prd/'` in `vite.config.js`. If you rename the repo, update this value accordingly.
-
-### Other Options
-
 - **Vercel**: `vercel deploy`
 - **Netlify**: Drag and drop the `dist` folder
 - **AWS S3**: Upload `dist` contents
+- **Cloudflare Pages**: Connect your repo and deploy
 
 ## License
 
