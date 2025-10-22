@@ -159,9 +159,42 @@ npm run build
 
 The built files will be in the `dist` directory. Deploy to any static hosting service:
 
+### GitHub Pages (Recommended)
+
+This project is pre-configured for GitHub Pages deployment:
+
+1. **Install gh-pages package**:
+```bash
+npm install --save-dev gh-pages
+```
+
+2. **Add deploy scripts to package.json**:
+```json
+"scripts": {
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d dist"
+}
+```
+
+3. **Deploy**:
+```bash
+npm run deploy
+```
+
+4. **Enable GitHub Pages**:
+   - Go to your repo Settings → Pages
+   - Source: Deploy from a branch
+   - Branch: `gh-pages` → `/ (root)`
+   - Save
+
+Your app will be live at: `https://yourusername.github.io/one-page-prd/`
+
+**Note**: The app is configured with `base: '/one-page-prd/'` in `vite.config.js`. If you rename the repo, update this value accordingly.
+
+### Other Options
+
 - **Vercel**: `vercel deploy`
 - **Netlify**: Drag and drop the `dist` folder
-- **GitHub Pages**: Use `gh-pages` package
 - **AWS S3**: Upload `dist` contents
 
 ## License
